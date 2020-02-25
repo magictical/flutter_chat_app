@@ -23,12 +23,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       vsync: this,
     );
 
-    animation = CurvedAnimation(
-      parent: controller,
-      curve: Curves.decelerate,
-    );
+    // set colors change in between
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
+        .animate(controller);
 
     controller.forward();
+
+    controller.addListener(() {
+      setState(() {});
+    });
 
     /// make loop animation
     // animation.addStatusListener((status) {
@@ -38,11 +41,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     //     controller.reverse(from: 1);
     //   }
     // });
-
-    controller.addListener(() {
-      setState(() {});
-      print(controller.value);
-    });
   }
 
   @override
@@ -54,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.withOpacity(controller.value),
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
