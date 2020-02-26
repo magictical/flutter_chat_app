@@ -3,6 +3,8 @@ import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
+import '../components/rounded_button.dart';
+
 class WelcomeScreen extends StatefulWidget {
   static const routeName = '/welcome-screen';
   @override
@@ -23,13 +25,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       duration: Duration(seconds: 2),
       vsync: this,
     );
-
     // set colors change in between
     animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
         .animate(controller);
-
     controller.forward();
-
     controller.addListener(() {
       setState(() {});
     });
@@ -81,44 +80,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                    Navigator.of(context).pushNamed(LoginScreen.routeName);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            RoudedButton(
+              title: 'Log In',
+              color: Colors.lightBlueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.routeName);
+              },
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen. same result to above Navigator
-                    Navigator.pushNamed(context, RegistrationScreen.routeName);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+            RoudedButton(
+              title: 'Register',
+              color: Colors.blueAccent,
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.routeName);
+              },
+            )
           ],
         ),
       ),
