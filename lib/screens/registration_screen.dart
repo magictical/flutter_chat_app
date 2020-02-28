@@ -41,9 +41,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
               onChanged: (value) {
-                setState(() {
-                  email = value;
-                });
+                email = value;
                 //Do something with the user input.
               },
               decoration:
@@ -57,9 +55,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               textAlign: TextAlign.center,
               onChanged: (value) {
                 //Do something with the user input.
-                setState(() {
-                  password = value;
-                });
+                password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter Your Password'),
