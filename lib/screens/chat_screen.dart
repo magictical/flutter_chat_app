@@ -78,7 +78,11 @@ class _ChatScreenState extends State<ChatScreen> {
               // where the data come from
               stream: _firestore.collection('messages').snapshots(),
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
+                if (!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator(
+                    backgroundColor: Colors.lightBlueAccent,
+                  ));
+                }
                   final messages = snapshot.data.documents;
                   List<Text> messageWidgets = [];
                   for (var message in messages) {
